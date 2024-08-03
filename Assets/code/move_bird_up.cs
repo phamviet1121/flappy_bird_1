@@ -8,7 +8,7 @@ public class move_bird_up : MonoBehaviour
 {
 
     public Rigidbody2D rb;
-    public float down = 6f;
+    public float down = 12f;
     public bool leverStar;
     public GameObject gamecontreller;
     public Animator amin;
@@ -32,24 +32,24 @@ public class move_bird_up : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!leverStar)
+            if (leverStar==false)
             {
                 leverStar = true;
-                rb.gravityScale = 1;
+                rb.gravityScale = 6;
                 //gan giá trị cho biến bool batdau trong creste.cs
                 gamecontreller.GetComponent<create>().batdau = true;
             }
-            else
-            {
+           
                 jump();
                 amin.SetTrigger("bay");
-            }
+            
 
         }
     }
     private void jump()
     {
-        rb.AddForce(Vector3.up * down, (ForceMode2D)ForceMode.Impulse);
+       // rb.AddForce(Vector3.up * down, (ForceMode2D)ForceMode.Impulse);
+       rb.velocity = Vector2.up * down;
     }
        
 }
